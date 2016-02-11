@@ -13,4 +13,8 @@ import java.util.ArrayList;
  */
 public class Graph {
     ArrayList<GraphTree> graph = new ArrayList<>();
+    
+    public void readFile( String path ) {
+        
+    }
 }
