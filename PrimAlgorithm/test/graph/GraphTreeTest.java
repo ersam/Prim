@@ -11,8 +11,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import primalgorithm.graph.GraphItem;
-import primalgorithm.graph.GraphTree;
 
 /**
  *

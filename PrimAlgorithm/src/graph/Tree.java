@@ -1,4 +1,4 @@
-package primalgorithm.graph;
+package graph;
 
 public abstract class Tree<T> {
 
