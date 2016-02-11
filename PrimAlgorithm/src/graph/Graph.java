@@ -17,4 +17,8 @@ public class Graph {
     public GraphTree minimumSpanningTree() {
         return null;
     }
+    
+    public void readFile( String path ) {
+        
+    }
 }
