@@ -13,4 +13,8 @@ import java.util.ArrayList;
  */
 public class Graph {
     ArrayList<GraphTree> graph = new ArrayList<>();
+    
+    public GraphTree minimumSpanningTree() {
+        return null;
+    }
 }
