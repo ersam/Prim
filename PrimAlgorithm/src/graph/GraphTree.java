@@ -19,9 +19,9 @@ public class GraphTree extends Tree<GraphItem> {
             return;
         }
 
-        if (item.getWeight() > this.getItem().getWeight()) {
+        if (item.getTo() > this.getItem().getTo()) {
             this.setRight(goToNode((GraphTree) this.getRight(), item));
-        } else if (item.getWeight() <= this.getItem().getWeight()) {
+        } else if (item.getTo() < this.getItem().getTo()) {
             this.setLeft(goToNode((GraphTree) this.getLeft(), item));
         }
     }
@@ -52,5 +52,23 @@ public class GraphTree extends Tree<GraphItem> {
         }
 
         return tree;
+    }
+    
+    public GraphItem get(int index) throws NoSuchElementException {
+        if( this.getItem().getTo() < index ) {
+            return searchFurther((GraphTree) this.getRight(), index);
+        } else if ( this.getItem().getTo() > index ) {
+            return searchFurther((GraphTree) this.getLeft(), index);
+        } else return this.getItem();
+        
+        
+    }
+    
+    private GraphItem searchFurther( GraphTree node, int index) throws NoSuchElementException {
+        if (node == null) {
+            throw new NoSuchElementException("There is no such element!");
+        } else {
+            return node.get(index);
+        }
     }
 }
