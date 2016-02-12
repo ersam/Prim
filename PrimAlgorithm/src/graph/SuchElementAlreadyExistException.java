@@ -9,11 +9,11 @@ package graph;
  *
  * @author Eryk
  */
-public class TheSameNodeValueException extends Exception {
+public class SuchElementAlreadyExistException extends Exception {
     private final String message;
     
-    public TheSameNodeValueException( String messsage ) {
-        this.message = messsage;
+    public SuchElementAlreadyExistException(String message) {
+        this.message = message;
     }
     @Override
     public String getMessage() {

@@ -16,7 +16,7 @@ public class GraphTree extends Tree<GraphItem> {
         super(item, depth);
     }
 
-    public void insert(GraphItem item) {
+    public void insert(GraphItem item) throws SuchElementAlreadyExistException {
         if (item == null) {
             return;
         }
@@ -25,10 +25,11 @@ public class GraphTree extends Tree<GraphItem> {
             this.setRight(goToNode((GraphTree) this.getRight(), item));
         } else if (item.getTo() < this.getItem().getTo()) {
             this.setLeft(goToNode((GraphTree) this.getLeft(), item));
-        }
+        } else throw new SuchElementAlreadyExistException("The edge between nodes "
+                + item.getFrom() + " and " + item.getTo() + " already exist in graph!" );
     }
 
-    private GraphTree goToNode(GraphTree node, GraphItem item) {
+    private GraphTree goToNode(GraphTree node, GraphItem item) throws SuchElementAlreadyExistException {
         if (node == null) {
             node = new GraphTree(item, this.getDepth() + 1);
         } else {
