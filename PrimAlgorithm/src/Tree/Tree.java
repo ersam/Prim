@@ -1,4 +1,4 @@
-package graph;
+package Tree;
 
 public abstract class Tree<T> {
 

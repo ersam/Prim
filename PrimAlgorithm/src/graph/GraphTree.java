@@ -1,5 +1,7 @@
 package graph;
 
+import Tree.Tree;
+
 /**
  *
  * @author Eryk

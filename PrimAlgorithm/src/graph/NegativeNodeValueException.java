@@ -9,11 +9,10 @@ package graph;
  *
  * @author Eryk
  */
-public class NoSuchElementException extends Exception {
-    
+public class NegativeNodeValueException extends Exception {
     public final String message;
     
-    public NoSuchElementException( String messsage ) {
+    public NegativeNodeValueException( String messsage ) {
         this.message = messsage;
     }
     @Override

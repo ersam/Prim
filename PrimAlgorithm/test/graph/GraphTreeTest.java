@@ -17,26 +17,40 @@ import org.junit.Test;
  * @author Eryk
  */
 public class GraphTreeTest {
-    
+
     public static final int NUMBER_OF_ITEMS = 10;
     public static final int MAX_VALUE_IN_GRAPH = 9;
-    GraphItem [] graphItemTab = new GraphItem[NUMBER_OF_ITEMS];
-    
+    GraphItem[] graphItemTab;
+
     public GraphTreeTest() {
+        graphItemTab = new GraphItem[NUMBER_OF_ITEMS];
+        Random r = new Random();
+        for (int i = 0; i < NUMBER_OF_ITEMS; i++) {
+            try {
+                graphItemTab[i] = new GraphItem(r.nextInt(MAX_VALUE_IN_GRAPH),
+                        r.nextInt(MAX_VALUE_IN_GRAPH), r.nextInt(MAX_VALUE_IN_GRAPH));
+            } catch (NegativeNodeValueException ex) {
+                System.out.println(ex.getMessage());
+                i--;
+            } catch (TheSameNodeValueException ex) {
+                System.out.println(ex.getMessage());
+                i--;
+            }
+        }
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -44,58 +58,50 @@ public class GraphTreeTest {
     /**
      * Test of insert method, of class GraphTree.
      */
-    
+    @Test
     public void testInsert() {
-        
-        initializeGraphItemTab();
-        
+
         System.out.println("Items created to insert into the tree:");
         System.out.println(printGraphItemTab());
-        
+
         GraphTree graphTree = new GraphTree(graphItemTab[0]);
-        
-        for( int i = 1; i < NUMBER_OF_ITEMS; i++ ) {
+
+        for (int i = 1; i < NUMBER_OF_ITEMS; i++) {
             graphTree.insert(graphItemTab[i]);
         }
-        
+
         System.out.println("Items after inserting into the tree:");
         System.out.println(graphTree.print());
-        
+
     }
-    
-    public void initializeGraphItemTab() {
-        Random r = new Random();
-        for(int i = 0; i < NUMBER_OF_ITEMS; i++) {
-            graphItemTab[i] = new GraphItem(r.nextInt(MAX_VALUE_IN_GRAPH), 
-                r.nextInt(MAX_VALUE_IN_GRAPH), r.nextInt(MAX_VALUE_IN_GRAPH));
-        }
-    }
-    
+
     public String printGraphItemTab() {
         String toString = "";
-        for(int i = 0; i < NUMBER_OF_ITEMS; i++) {
+        for (int i = 0; i < NUMBER_OF_ITEMS; i++) {
             toString = toString.concat("Item 1: " + graphItemTab[i].printItem());
         }
-        
+
         return toString;
     }
-    
-    @Test
-    public void testGet() throws NoSuchElementException {
-        initializeGraphItemTab();
-        
+
+    public void testGet() {
+
         System.out.println("Items created to insert into the tree:");
         System.out.println(printGraphItemTab());
-        
+
         GraphTree graphTree = new GraphTree(graphItemTab[0]);
-        
-        for( int i = 1; i < NUMBER_OF_ITEMS; i++ ) {
+
+        for (int i = 1; i < NUMBER_OF_ITEMS; i++) {
             graphTree.insert(graphItemTab[i]);
         }
-        
+
         System.out.println("Items after inserting into the tree:");
         System.out.println(graphTree.print());
-        
-        System.out.println("Returned element: " + graphTree.get(6).printItem());
+
+        try {
+            System.out.println("Returned element: " + graphTree.get(6).printItem());
+        } catch (NoSuchElementException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

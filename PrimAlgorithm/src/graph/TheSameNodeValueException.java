@@ -9,11 +9,10 @@ package graph;
  *
  * @author Eryk
  */
-public class NoSuchElementException extends Exception {
-    
+public class TheSameNodeValueException extends Exception {
     public final String message;
     
-    public NoSuchElementException( String messsage ) {
+    public TheSameNodeValueException( String messsage ) {
         this.message = messsage;
     }
     @Override
