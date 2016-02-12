@@ -41,8 +41,4 @@ public class Graph {
         
         return stringGraph;
     }
-    
-    public GraphTree minimumSpanningTree() {
-        return null;
-    }
 }

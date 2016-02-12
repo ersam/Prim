@@ -25,7 +25,8 @@ public class GraphTree extends Tree<GraphItem> {
             this.setRight(goToNode((GraphTree) this.getRight(), item));
         } else if (item.getTo() < this.getItem().getTo()) {
             this.setLeft(goToNode((GraphTree) this.getLeft(), item));
-        }
+        } else throw new SuchElementAlreadyExistException("The edge between nodes " + item.getFrom()
+                + " and + " item.getTo() + "already exist in graph!" );
     }
 
     private GraphTree goToNode(GraphTree node, GraphItem item) {

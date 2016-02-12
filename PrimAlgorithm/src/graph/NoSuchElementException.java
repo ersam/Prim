@@ -11,7 +11,7 @@ package graph;
  */
 public class NoSuchElementException extends Exception {
     
-    public final String message;
+    private final String message;
     
     public NoSuchElementException( String messsage ) {
         this.message = messsage;
