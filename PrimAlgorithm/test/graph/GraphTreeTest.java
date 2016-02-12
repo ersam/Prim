@@ -82,7 +82,7 @@ public class GraphTreeTest {
     public String printGraphItemTab() {
         String toString = "";
         for (int i = 0; i < NUMBER_OF_ITEMS; i++) {
-            toString = toString.concat("Item 1: " + graphItemTab[i].printItem());
+            toString = toString.concat("Item " + i +": " + graphItemTab[i].printItem());
         }
 
         return toString;

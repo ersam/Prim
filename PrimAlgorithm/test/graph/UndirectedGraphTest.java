@@ -6,6 +6,8 @@
 package graph;
 
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,16 +19,30 @@ import static org.junit.Assert.*;
  *
  * @author Eryk
  */
-public class GraphTest {
+public class UndirectedGraphTest {
     GraphItem [] graphItemTab;
-    private final int NUMBER_OF_SAMPLE_ITEMS = 5;
+    private final int NUMBER_OF_SAMPLE_ITEMS = 6;
+    private final int MAX_VALUE_IN_GRAPH = 15;
     Random r;
+    UndirectedGraph graph;
     
-    public GraphTest() {
+    public UndirectedGraphTest() {
         graphItemTab = new GraphItem[NUMBER_OF_SAMPLE_ITEMS];
         r = new Random();
+        graph = new UndirectedGraph(5, 6);
         
-        
+            try {
+                graphItemTab[0] = new GraphItem(3, 2, 4);
+                graphItemTab[1] = new GraphItem(2, 3, 2);
+                graphItemTab[2] = new GraphItem(4, 5, 3);
+                graphItemTab[3] = new GraphItem(6, 2, 5);
+                graphItemTab[4] = new GraphItem(4, 2, 7);
+                graphItemTab[5] = new GraphItem(1, 2, 4);
+            } catch (TheSameNodeValueException ex) {
+                System.err.println(ex.getMessage());
+            } catch (NegativeNodeValueException ex) {
+                System.err.println(ex.getMessage());
+            }
     }
     
     @BeforeClass
@@ -48,33 +64,33 @@ public class GraphTest {
     /**
      * Test of addToGraph method, of class Graph.
      */
+    
     @Test
     public void testAddToGraph() {
         System.out.println("addToGraph test:\n");
-                
+        
+        for(int i = 0; i < NUMBER_OF_SAMPLE_ITEMS; i++) {
+            try {
+                graph.addToGraph(graphItemTab[i]);
+            } catch (OutOfSizeException ex) {
+                System.err.println(ex.getMessage());
+            }
+        }
+        
         
     }
 
     /**
      * Test of print method, of class Graph.
      */
-    @Test
+    //@Test
     public void testPrint() {
         System.out.println("print");
-        Graph instance = null;
-        String expResult = "";
-        String result = instance.print();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
      * Test of minimumSpanningTree method, of class Graph.
      */
-    @Test
-    public void testMinimumSpanningTree() {
-        
-    }
     
 }
