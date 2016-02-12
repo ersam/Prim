@@ -14,7 +14,13 @@ public class GraphItem {
     private int to;
     private int weight;
     
-    public GraphItem(int from, int to, int weight) {
+    public GraphItem(int from, int to, int weight) throws NegativeNodeValueException, TheSameNodeValueException {
+        if( from < 0 || to < 0 ) {
+            throw new NegativeNodeValueException("Values of nodes in graph cannot be negative!");
+        }
+        if ( from == to ) {
+            throw new TheSameNodeValueException("Two nodes cannot have the same value!");
+        }
         this.from = from;
         this.to = to;
         this.weight = weight;

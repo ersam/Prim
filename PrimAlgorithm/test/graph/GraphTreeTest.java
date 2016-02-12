@@ -23,6 +23,11 @@ public class GraphTreeTest {
     GraphItem [] graphItemTab = new GraphItem[NUMBER_OF_ITEMS];
     
     public GraphTreeTest() {
+        Random r = new Random();
+        for(int i = 0; i < NUMBER_OF_ITEMS; i++) {
+            graphItemTab[i] = new GraphItem(r.nextInt(MAX_VALUE_IN_GRAPH), 
+                r.nextInt(MAX_VALUE_IN_GRAPH), r.nextInt(MAX_VALUE_IN_GRAPH));
+        }
     }
     
     @BeforeClass
@@ -44,10 +49,8 @@ public class GraphTreeTest {
     /**
      * Test of insert method, of class GraphTree.
      */
-    
+    @Test
     public void testInsert() {
-        
-        initializeGraphItemTab();
         
         System.out.println("Items created to insert into the tree:");
         System.out.println(printGraphItemTab());
@@ -63,13 +66,6 @@ public class GraphTreeTest {
         
     }
     
-    public void initializeGraphItemTab() {
-        Random r = new Random();
-        for(int i = 0; i < NUMBER_OF_ITEMS; i++) {
-            graphItemTab[i] = new GraphItem(r.nextInt(MAX_VALUE_IN_GRAPH), 
-                r.nextInt(MAX_VALUE_IN_GRAPH), r.nextInt(MAX_VALUE_IN_GRAPH));
-        }
-    }
     
     public String printGraphItemTab() {
         String toString = "";
@@ -80,9 +76,8 @@ public class GraphTreeTest {
         return toString;
     }
     
-    @Test
+    
     public void testGet() throws NoSuchElementException {
-        initializeGraphItemTab();
         
         System.out.println("Items created to insert into the tree:");
         System.out.println(printGraphItemTab());
