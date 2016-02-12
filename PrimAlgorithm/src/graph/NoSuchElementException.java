@@ -9,7 +9,7 @@ package graph;
  *
  * @author Eryk
  */
-class NoSuchElementException extends Exception {
+public class NoSuchElementException extends Exception {
     
     public final String message;
     

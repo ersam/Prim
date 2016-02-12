@@ -44,16 +44,18 @@ public class GraphItemTest {
     public void GraphItemTest() {
         GraphItem[] itemsTab = new GraphItem[5];
         try {
-            itemsTab[0] = new GraphItem(-1, 1, 2);
+            //itemsTab[0] = new GraphItem(-1, 1, 2);
             itemsTab[1] = new GraphItem(3, -2, 5);
             itemsTab[2] = new GraphItem(-2, -4, 3);
             itemsTab[3] = new GraphItem(1, 1, 4);
             itemsTab[4] = new GraphItem(2, 1, -4);
         } catch (NegativeNodeValueException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         } catch (TheSameNodeValueException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
+        
+        System.out.println("test!");
 
     }
 

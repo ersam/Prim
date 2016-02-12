@@ -9,7 +9,7 @@ package graph;
  *
  * @author Eryk
  */
-class NegativeNodeValueException extends Exception {
+public class NegativeNodeValueException extends Exception {
     public final String message;
     
     public NegativeNodeValueException( String messsage ) {
