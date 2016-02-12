@@ -74,13 +74,7 @@ public class GraphTest {
      */
     @Test
     public void testMinimumSpanningTree() {
-        System.out.println("minimumSpanningTree");
-        Graph instance = null;
-        GraphTree expResult = null;
-        GraphTree result = instance.minimumSpanningTree();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
     
 }
