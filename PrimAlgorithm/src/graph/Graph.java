@@ -5,6 +5,9 @@
  */
 package graph;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Eryk
@@ -21,7 +24,11 @@ public class Graph {
     }
     
     private void insertIntoGraph( GraphItem item ) {
-        graph[item.getFrom()].insert(item);
+        try {
+            graph[item.getFrom()].insert(item);
+        } catch (SuchElementAlreadyExistException ex) {
+            System.err.println(ex.getMessage());
+        }
     }
     
     private void addToGraph( GraphItem item ) {

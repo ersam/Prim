@@ -6,8 +6,6 @@
 package graph;
 
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -32,10 +30,10 @@ public class GraphTreeTest {
                 graphItemTab[i] = new GraphItem(r.nextInt(MAX_VALUE_IN_GRAPH),
                         r.nextInt(MAX_VALUE_IN_GRAPH), r.nextInt(MAX_VALUE_IN_GRAPH));
             } catch (NegativeNodeValueException ex) {
-                System.out.println(ex.getMessage());
+                System.err.println(ex.getMessage());
                 i--;
             } catch (TheSameNodeValueException ex) {
-                System.out.println(ex.getMessage());
+                System.err.println(ex.getMessage());
                 i--;
             }
         }
@@ -72,7 +70,7 @@ public class GraphTreeTest {
             try {
                 graphTree.insert(graphItemTab[i]);
             } catch (SuchElementAlreadyExistException ex) {
-                System.out.println(ex.getMessage());
+                System.err.println(ex.getMessage());
             }
         }
 
@@ -101,7 +99,7 @@ public class GraphTreeTest {
             try {
                 graphTree.insert(graphItemTab[i]);
             } catch (SuchElementAlreadyExistException ex) {
-                System.out.println(ex.getMessage());
+                System.err.println(ex.getMessage());
             }
         }
 
@@ -111,7 +109,7 @@ public class GraphTreeTest {
         try {
             System.out.println("Returned element: " + graphTree.get(6).printItem());
         } catch (NoSuchElementException ex) {
-            System.out.println(ex.getMessage());
+            System.err.println(ex.getMessage());
         }
     }
 }
