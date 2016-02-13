@@ -5,17 +5,21 @@
  */
 package primalgorithm;
 
+import graph.UndirectedGraph;
+
 /**
  *
  * @author Eryk
  */
 public class PrimAlgorithm {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        System.out.println("Test"); // test
+    private UndirectedGraph uGraph;
+    
+    public UndirectedGraph readFile(String file) {
+        return null;
     }
     
+    public static void main(String[] args) {
+        
+    }
 }

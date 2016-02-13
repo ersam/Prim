@@ -20,7 +20,7 @@ import org.junit.Test;
  */
 public class GraphTreeTest {
 
-    public static final int NUMBER_OF_ITEMS = 20;
+    public static final int NUMBER_OF_ITEMS = 10;
     public static final int MAX_VALUE_IN_GRAPH = 9;
     GraphItem[] graphItemTab;
 
@@ -32,10 +32,10 @@ public class GraphTreeTest {
                 graphItemTab[i] = new GraphItem(r.nextInt(MAX_VALUE_IN_GRAPH),
                         r.nextInt(MAX_VALUE_IN_GRAPH), r.nextInt(MAX_VALUE_IN_GRAPH));
             } catch (NegativeNodeValueException ex) {
-                System.out.println(ex.getMessage());
+                System.err.println(ex.getMessage());
                 i--;
             } catch (TheSameNodeValueException ex) {
-                System.out.println(ex.getMessage());
+                System.err.println(ex.getMessage());
                 i--;
             }
         }
@@ -72,8 +72,14 @@ public class GraphTreeTest {
             try {
                 graphTree.insert(graphItemTab[i]);
             } catch (SuchElementAlreadyExistException ex) {
-                System.out.println(ex.getMessage());
-            }
+                System.err.println(ex.getMessage());
+            } 
+        }
+        
+        try {
+            graphTree.insert(null);
+        } catch (SuchElementAlreadyExistException ex) {
+            System.err.println(ex.getMessage());
         }
 
         System.out.println("Items after inserting into the tree:");
@@ -84,7 +90,7 @@ public class GraphTreeTest {
     public String printGraphItemTab() {
         String toString = "";
         for (int i = 0; i < NUMBER_OF_ITEMS; i++) {
-            toString = toString.concat("Item 1: " + graphItemTab[i].printItem());
+            toString = toString.concat("Item " + i +": " + graphItemTab[i].printItem());
         }
 
         return toString;
@@ -101,7 +107,7 @@ public class GraphTreeTest {
             try {
                 graphTree.insert(graphItemTab[i]);
             } catch (SuchElementAlreadyExistException ex) {
-                System.out.println(ex.getMessage());
+                System.err.println(ex.getMessage());
             }
         }
 
@@ -111,7 +117,7 @@ public class GraphTreeTest {
         try {
             System.out.println("Returned element: " + graphTree.get(6).printItem());
         } catch (NoSuchElementException ex) {
-            System.out.println(ex.getMessage());
+            System.err.println(ex.getMessage());
         }
     }
 }

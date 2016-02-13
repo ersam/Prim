@@ -21,6 +21,10 @@ public class GraphTree extends Tree<GraphItem> {
             return;
         }
 
+        if(this.getItem() == null) {
+            this.setItem(item);
+            return;
+        }
         if (item.getTo() > this.getItem().getTo()) {
             this.setRight(goToNode((GraphTree) this.getRight(), item));
         } else if (item.getTo() < this.getItem().getTo()) {
@@ -42,6 +46,9 @@ public class GraphTree extends Tree<GraphItem> {
     public String print() {
         String tree = "";
 
+        if(this.getItem() == null) {
+            return tree;
+        }
         if ( this.getLeft() != null ) {
             GraphTree tmp = (GraphTree) this.getLeft();
             tree = tree.concat(tmp.print());
