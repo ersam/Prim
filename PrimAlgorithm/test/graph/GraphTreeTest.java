@@ -116,7 +116,7 @@ public class GraphTreeTest {
 
         try {
             System.out.println("Returned element: " + graphTree.get(6).printItem());
-        } catch (NoSuchElementException ex) {
+        } catch (NoSuchElementInGraphException ex) {
             System.err.println(ex.getMessage());
         }
     }

@@ -15,11 +15,18 @@ public abstract class Graph {
     private final int numberOfNodes;
     private final int numberOfEdges;
 
-    public Graph(int numberOfNodes, int numberOfEdges) throws NegativeNodeValueException, TheSameNodeValueException {
+    public Graph(int numberOfNodes, int numberOfEdges) throws NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException {
+        checkCorrectnessOfParameters(numberOfNodes, numberOfEdges);
         this.numberOfNodes = numberOfNodes;
         this.numberOfEdges = numberOfEdges;
         this.graph = new GraphTree[numberOfNodes];
         initializeGraph();
+    }
+    
+    private void checkCorrectnessOfParameters(int numberOfNodes, int numberOfEdges) throws BadGraphParametersException {
+        if(numberOfEdges <= 0 || numberOfNodes <= 0) {
+            throw new BadGraphParametersException("Bad parameters in graph " + this.getClass());
+        }
     }
     
     private void initializeGraph() throws NegativeNodeValueException, TheSameNodeValueException {
@@ -40,7 +47,7 @@ public abstract class Graph {
         GraphItem item = null;
         try {
             item = graph[from].get(to);
-        } catch (NoSuchElementException ex) {
+        } catch (NoSuchElementInGraphException ex) {
             System.out.println(ex.getMessage());
         }
 
@@ -74,4 +81,6 @@ public abstract class Graph {
 
         return stringGraph;
     }
+
+    
 }

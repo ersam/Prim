@@ -64,7 +64,7 @@ public class GraphTree extends Tree<GraphItem> {
         return tree;
     }
     
-    public GraphItem get(int index) throws NoSuchElementException {
+    public GraphItem get(int index) throws NoSuchElementInGraphException {
         if( this.getItem().getTo() < index ) {
             return searchFurther((GraphTree) this.getRight(), index);
         } else if ( this.getItem().getTo() > index ) {
@@ -74,9 +74,9 @@ public class GraphTree extends Tree<GraphItem> {
         
     }
     
-    private GraphItem searchFurther( GraphTree node, int index) throws NoSuchElementException {
+    private GraphItem searchFurther( GraphTree node, int index) throws NoSuchElementInGraphException {
         if (node == null) {
-            throw new NoSuchElementException("There is no such element!");
+            throw new NoSuchElementInGraphException("There is no such element!");
         } else {
             return node.get(index);
         }
