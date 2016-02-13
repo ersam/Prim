@@ -6,6 +6,8 @@
 package graph;
 
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,7 +20,7 @@ import org.junit.Test;
  */
 public class GraphTreeTest {
 
-    public static final int NUMBER_OF_ITEMS = 20;
+    public static final int NUMBER_OF_ITEMS = 10;
     public static final int MAX_VALUE_IN_GRAPH = 9;
     GraphItem[] graphItemTab;
 
@@ -71,7 +73,13 @@ public class GraphTreeTest {
                 graphTree.insert(graphItemTab[i]);
             } catch (SuchElementAlreadyExistException ex) {
                 System.err.println(ex.getMessage());
-            }
+            } 
+        }
+        
+        try {
+            graphTree.insert(null);
+        } catch (SuchElementAlreadyExistException ex) {
+            System.err.println(ex.getMessage());
         }
 
         System.out.println("Items after inserting into the tree:");
