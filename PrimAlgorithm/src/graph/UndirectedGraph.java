@@ -11,7 +11,7 @@ package graph;
  */
 public class UndirectedGraph extends Graph {
        
-    public UndirectedGraph( int numberOfNodes, int numberOfEdges ) throws NegativeNodeValueException, TheSameNodeValueException {
+    public UndirectedGraph( int numberOfNodes, int numberOfEdges ) throws NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException {
         super(numberOfNodes, numberOfEdges);
     }
     
