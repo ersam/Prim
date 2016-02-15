@@ -9,11 +9,16 @@ package graph;
  *
  * @author Eryk
  */
-public class UndirectedGraph extends Graph {
-       
-    public UndirectedGraph( int numberOfNodes, int numberOfEdges ) throws NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException {
-        super(numberOfNodes, numberOfEdges);
+class NotEmptyFileException extends Exception {
+    private final String message;
+
+    public NotEmptyFileException(String message) {
+        this.message = message;
     }
     
+    @Override
+    public String getMessage() {
+        return this.message;
+    }
     
 }

@@ -6,8 +6,6 @@
 package graph;
 
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,17 +16,17 @@ import org.junit.Test;
  *
  * @author Eryk
  */
-public class UndirectedGraphTest {
+public class GraphTest {
     GraphItem [] graphItemTab;
     private final int NUMBER_OF_SAMPLE_ITEMS = 6;
     private final int MAX_VALUE_IN_GRAPH = 15;
     Random r;
-    UndirectedGraph graph;
+    Graph graph;
     
-    public UndirectedGraphTest() throws NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException {
+    public GraphTest() throws NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException {
         graphItemTab = new GraphItem[NUMBER_OF_SAMPLE_ITEMS];
         r = new Random();
-        graph = new UndirectedGraph(NUMBER_OF_SAMPLE_ITEMS, 3);
+        graph = new Graph(NUMBER_OF_SAMPLE_ITEMS);
         
             try {
                 graphItemTab[0] = new GraphItem(3, 2, 4);
@@ -83,6 +81,7 @@ public class UndirectedGraphTest {
         }
         
         System.out.println(graph.print());
+        System.out.println(graph.getNumberOfEdges());
     }
 
     /**

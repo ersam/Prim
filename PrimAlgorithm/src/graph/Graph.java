@@ -5,35 +5,58 @@
  */
 package graph;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 /**
  *
  * @author Eryk
  */
-public abstract class Graph {
+public class Graph {
 
     private GraphTree[] graph;
-    private final int numberOfNodes;
-    private final int numberOfEdges;
+    private int numberOfNodes;
+    private int numberOfEdges;
 
-    public Graph(int numberOfNodes, int numberOfEdges) throws NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException {
-        checkCorrectnessOfParameters(numberOfNodes, numberOfEdges);
+    public Graph(int numberOfNodes) throws NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException {
+        checkCorrectnessOfParameters(numberOfNodes);
         this.numberOfNodes = numberOfNodes;
-        this.numberOfEdges = numberOfEdges;
-        this.graph = new GraphTree[numberOfNodes];
+        this.numberOfEdges = 0;
         initializeGraph();
     }
     
-    private void checkCorrectnessOfParameters(int numberOfNodes, int numberOfEdges) throws BadGraphParametersException {
-        if(numberOfEdges <= 0 || numberOfNodes <= 0) {
+    private void checkCorrectnessOfParameters(int numberOfNodes) throws BadGraphParametersException {
+        if( numberOfNodes <= 0) {
             throw new BadGraphParametersException("Bad parameters in graph " + this.getClass());
         }
     }
     
     private void initializeGraph() throws NegativeNodeValueException, TheSameNodeValueException {
+        this.graph = new GraphTree[numberOfNodes];
         for(int i = 0; i < numberOfNodes; i++) {
             graph[i] = new GraphTree(null);
         }
     }
+    
+    public void readFile(String file) throws FileNotFoundException, SuchElementAlreadyExistException, NotEmptyFileException, NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException, OutOfSizeException {
+        Scanner scanner = new Scanner(new File(file));
+        
+        numberOfNodes = scanner.nextInt();
+        
+        for(int i = 0; i < numberOfEdges; i++) {
+            addToGraph(new GraphItem(scanner.nextInt(), scanner.nextInt(), scanner.nextInt()));
+        }
+        
+        if( scanner.hasNext() ) {
+            throw new NotEmptyFileException("File contains too much data");
+        }
+    }
+    
+    private Graph setGraphParameters(int numberOfNodes) throws NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException {
+        return (new Graph(numberOfNodes));
+    }
+    
 
     public int getNumberOfNodes() {
         return this.numberOfNodes;
@@ -70,6 +93,7 @@ public abstract class Graph {
         item.setFrom(item.getTo());
         item.setTo(tmp);
         graph[item.getFrom()].insert(item);
+        numberOfEdges++;
     }
 
     public String print() {
