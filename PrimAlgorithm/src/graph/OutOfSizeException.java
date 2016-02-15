@@ -9,7 +9,7 @@ package graph;
  *
  * @author Eryk
  */
-class OutOfSizeException extends Exception {
+public class OutOfSizeException extends Exception {
     public final String message;
     
     public OutOfSizeException(String message) {
