@@ -5,11 +5,7 @@
  */
 package graph;
 
-import java.util.Random;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import java.io.FileNotFoundException;
 import org.junit.Test;
 
 /**
@@ -17,84 +13,65 @@ import org.junit.Test;
  * @author Eryk
  */
 public class GraphTest {
-    GraphItem [] graphItemTab;
-    private final int NUMBER_OF_SAMPLE_ITEMS = 6;
+
+    private static GraphItem[] graphItemTab;
+    private final int NUMBER_OF_SAMPLE_ITEMS = 7;
     private final int MAX_VALUE_IN_GRAPH = 15;
-    Random r;
-    Graph graph;
-    
-    public GraphTest() throws NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException {
-        graphItemTab = new GraphItem[NUMBER_OF_SAMPLE_ITEMS];
-        r = new Random();
+    private static Graph graph;
+
+    private void initialize() throws NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException {
         graph = new Graph(NUMBER_OF_SAMPLE_ITEMS);
+        graphItemTab = new GraphItem[NUMBER_OF_SAMPLE_ITEMS];
+
+        graphItemTab[0] = new GraphItem(1, 3, 2);
+        graphItemTab[1] = new GraphItem(3, 2, 4);
+        graphItemTab[2] = new GraphItem(5, 4, 3);
+        graphItemTab[3] = new GraphItem(2, 5, 8);
+        graphItemTab[4] = new GraphItem(3, 5, 7);
+        graphItemTab[5] = new GraphItem(5, 1, 4);
+        graphItemTab[6] = new GraphItem(4, 3, 5);
         
-            try {
-                graphItemTab[0] = new GraphItem(3, 2, 4);
-                graphItemTab[1] = new GraphItem(2, 3, 2);
-                graphItemTab[2] = new GraphItem(4, 5, 3);
-                graphItemTab[3] = new GraphItem(5, 2, 5);
-                graphItemTab[4] = new GraphItem(4, 2, 7);
-                graphItemTab[5] = new GraphItem(1, 2, 4);
-            } catch (TheSameNodeValueException ex) {
-                System.err.println(ex.getMessage());
-            } catch (NegativeNodeValueException ex) {
-                System.err.println(ex.getMessage());
-            }
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
     }
 
-    /**
-     * Test of addToGraph method, of class Graph.
-     */
-    
     @Test
     public void testAddToGraph() {
         System.out.println("addToGraph test:\n");
-        
-        
-        for( int i = 0; i < NUMBER_OF_SAMPLE_ITEMS; i++) {
-            System.out.print(graphItemTab[i].printItem());
+        try {
+            initialize();
+        } catch (NegativeNodeValueException | BadGraphParametersException ex) {
+            System.err.println(ex.getMessage());
+            return;
+        } catch (TheSameNodeValueException ex) {
+            System.err.println(ex.getMessage());
         }
-        for(int i = 0; i < NUMBER_OF_SAMPLE_ITEMS; i++) {
+
+        
+//        for (int i = 0; i < NUMBER_OF_SAMPLE_ITEMS; i++) {
+//            System.out.print(graphItemTab[i].printItem());
+//        }
+        for (int i = 0; i < graph.getNumberOfNodes(); i++) {
             try {
                 graph.addToGraph(graphItemTab[i]);
-            } catch (OutOfSizeException ex) {
-                System.err.println(ex.getMessage());
-            } catch (SuchElementAlreadyExistException ex) {
+            } catch (OutOfSizeException | SuchElementAlreadyExistException ex) {
                 System.err.println(ex.getMessage());
             }
         }
-        
+
         System.out.println(graph.print());
         System.out.println(graph.getNumberOfEdges());
     }
-
-    /**
-     * Test of print method, of class Graph.
-     */
-    //@Test
-    public void testPrint() {
-        System.out.println("print");
-        
-    }
-
-    /**
-     * Test of minimumSpanningTree method, of class Graph.
-     */
     
+    @Test
+    public void readFileTest() {
+        System.out.println("readFile() test:\n");
+        try {
+            graph = new Graph();
+            graph.readFile("C:\\Users\\Eryk\\Desktop\\graph1.txt");
+        } catch (FileNotFoundException | SuchElementAlreadyExistException | NotEmptyFileException | NegativeNodeValueException | TheSameNodeValueException | BadGraphParametersException | OutOfSizeException ex) {
+            System.err.println(ex.getMessage());
+            return;
+        }
+        
+        System.out.print(graph.print());
+    }
 }

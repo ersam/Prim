@@ -23,7 +23,12 @@ public class Graph {
         checkCorrectnessOfParameters(numberOfNodes);
         this.numberOfNodes = numberOfNodes;
         this.numberOfEdges = 0;
-        initializeGraph();
+        initializeGraph(numberOfNodes);
+    }
+
+    public Graph() {
+        this.numberOfNodes = 0;
+        this.numberOfEdges = 0;
     }
     
     private void checkCorrectnessOfParameters(int numberOfNodes) throws BadGraphParametersException {
@@ -32,7 +37,7 @@ public class Graph {
         }
     }
     
-    private void initializeGraph() throws NegativeNodeValueException, TheSameNodeValueException {
+    private void initializeGraph(int numberOfNodes) throws NegativeNodeValueException, TheSameNodeValueException {
         this.graph = new GraphTree[numberOfNodes];
         for(int i = 0; i < numberOfNodes; i++) {
             graph[i] = new GraphTree(null);
@@ -43,8 +48,10 @@ public class Graph {
         Scanner scanner = new Scanner(new File(file));
         
         numberOfNodes = scanner.nextInt();
+        initializeGraph(numberOfNodes);
+        int edges = scanner.nextInt();
         
-        for(int i = 0; i < numberOfEdges; i++) {
+        for(int i = 0; i < edges; i++) {
             addToGraph(new GraphItem(scanner.nextInt(), scanner.nextInt(), scanner.nextInt()));
         }
         
@@ -52,11 +59,6 @@ public class Graph {
             throw new NotEmptyFileException("File contains too much data");
         }
     }
-    
-    private Graph setGraphParameters(int numberOfNodes) throws NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException {
-        return (new Graph(numberOfNodes));
-    }
-    
 
     public int getNumberOfNodes() {
         return this.numberOfNodes;
@@ -82,7 +84,7 @@ public class Graph {
             return;
         }
         if (item.getFrom() >= this.numberOfNodes || item.getTo() >= this.numberOfNodes) {
-            throw new OutOfSizeException("One of the node is out of the size of graph and cannot be added!");
+            throw new OutOfSizeException("One of the node is out of the size of the graph and cannot be added!");
         }
         insertIntoGraph(item);
     }
