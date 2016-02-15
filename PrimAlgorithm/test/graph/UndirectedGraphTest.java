@@ -25,7 +25,7 @@ public class UndirectedGraphTest {
     Random r;
     UndirectedGraph graph;
     
-    public UndirectedGraphTest() {
+    public UndirectedGraphTest() throws NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException {
         graphItemTab = new GraphItem[NUMBER_OF_SAMPLE_ITEMS];
         r = new Random();
         graph = new UndirectedGraph(NUMBER_OF_SAMPLE_ITEMS, 3);

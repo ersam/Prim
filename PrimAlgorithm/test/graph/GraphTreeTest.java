@@ -66,11 +66,12 @@ public class GraphTreeTest {
         System.out.println("Items created to insert into the tree:");
         System.out.println(printGraphItemTab());
 
-        GraphTree graphTree = new GraphTree(graphItemTab[0]);
+        GraphTree graphTree = new GraphTree(null);
 
-        for (int i = 1; i < NUMBER_OF_ITEMS; i++) {
+        for (int i = 0; i < NUMBER_OF_ITEMS; i++) {
             try {
                 graphTree.insert(graphItemTab[i]);
+                System.out.println("Item added: " + graphItemTab[i].printItem());
             } catch (SuchElementAlreadyExistException ex) {
                 System.err.println(ex.getMessage());
             } 
@@ -84,6 +85,7 @@ public class GraphTreeTest {
 
         System.out.println("Items after inserting into the tree:");
         System.out.println(graphTree.print());
+        System.out.println(graphTree.getNumberOfNodes());
 
     }
 
@@ -119,5 +121,7 @@ public class GraphTreeTest {
         } catch (NoSuchElementInGraphException ex) {
             System.err.println(ex.getMessage());
         }
+        
+        
     }
 }
