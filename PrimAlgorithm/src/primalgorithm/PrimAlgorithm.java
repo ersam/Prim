@@ -6,6 +6,7 @@
 package primalgorithm;
 
 import graph.Graph;
+import graph.GraphItem;
 
 /**
  *
@@ -13,7 +14,27 @@ import graph.Graph;
  */
 public class PrimAlgorithm {
 
-    private Graph Graph;
+    private Graph graph;
+    
+    public Graph findMinimumSpanningTree(Graph graph) {
+        Graph MST = new Graph();
+        
+        
+        return MST;
+    }
+    
+    public GraphItem findFirstNode(Graph graph) {
+        GraphItem item = null;
+        for( int i = 0; i < graph.getNumberOfNodes(); i++ ) {
+            for( int j = 0; j < graph.getNumberOfNodes(); j++ ) {
+                if( i != j && (item = graph.getItem(i, j)) != null) {
+                    return item;
+                }
+            }
+        }
+        
+        return item;
+    }
 
     public static void main(String[] args) {
 
