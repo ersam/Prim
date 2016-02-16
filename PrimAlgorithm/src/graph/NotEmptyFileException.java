@@ -9,7 +9,7 @@ package graph;
  *
  * @author Eryk
  */
-class NotEmptyFileException extends Exception {
+public class NotEmptyFileException extends Exception {
     private final String message;
 
     public NotEmptyFileException(String message) {

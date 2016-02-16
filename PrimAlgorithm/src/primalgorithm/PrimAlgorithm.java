@@ -15,6 +15,12 @@ import graph.GraphItem;
 public class PrimAlgorithm {
 
     private Graph graph;
+
+    public PrimAlgorithm(Graph graph) {
+        this.graph = graph;
+    }
+    
+    
     
     public Graph findMinimumSpanningTree(Graph graph) {
         Graph MST = new Graph();
@@ -24,6 +30,9 @@ public class PrimAlgorithm {
     }
     
     public GraphItem findFirstNode(Graph graph) {
+        if( graph == null) {
+            return null;
+        }
         GraphItem item = null;
         for( int i = 0; i < graph.getNumberOfNodes(); i++ ) {
             for( int j = 0; j < graph.getNumberOfNodes(); j++ ) {
