@@ -48,4 +48,16 @@ public abstract class Tree<T> {
     public void setRight(Tree<T> right) {
         this.right = right;
     }
+    
+    public T getMaxValue() {
+        if( this.right == null ) {
+            return this.item;
+        } else return this.right.getMaxValue();
+    }
+    
+    public T getMinValue() {
+        if( this.left == null ) {
+            return this.item;
+        } else return this.left.getMaxValue();
+    }
 }

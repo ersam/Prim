@@ -6,8 +6,6 @@
 package graph;
 
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -86,7 +84,7 @@ public class GraphTreeTest {
         System.out.println("Items after inserting into the tree:");
         System.out.println(graphTree.print());
         System.out.println(graphTree.getNumberOfNodes());
-
+        System.out.println("Max weight: " + graphTree.getMaxValue().getWeight() + "\nMin weight: " + graphTree.getMinValue().getWeight());
     }
 
     public String printGraphItemTab() {

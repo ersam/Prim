@@ -76,7 +76,7 @@ public class GraphTest {
         try {
             Graph graph1 = new Graph(8);
             graph1.addToGraph(new GraphItem(3, 2, 1));
-            System.out.println(graph1.print());
+            System.out.println("\nGraph1:\n" + graph1.print());
         } catch (OutOfSizeException | SuchElementAlreadyExistException | NegativeNodeValueException | TheSameNodeValueException | BadGraphParametersException ex) {
             System.err.println(ex.getMessage());
         }

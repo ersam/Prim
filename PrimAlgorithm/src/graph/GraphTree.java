@@ -25,9 +25,9 @@ public class GraphTree extends Tree<GraphItem> {
             this.setItem(item);
             return;
         }
-        if (item.getTo() > this.getItem().getTo()) {
+        if (item.getWeight() > this.getItem().getWeight()) {
             this.setRight(goToNode((GraphTree) this.getRight(), item));
-        } else if (item.getTo() < this.getItem().getTo()) {
+        } else if (item.getWeight() < this.getItem().getWeight()) {
             this.setLeft(goToNode((GraphTree) this.getLeft(), item));
         } else {
             throw new SuchElementAlreadyExistException("The edge between nodes "
@@ -91,9 +91,6 @@ public class GraphTree extends Tree<GraphItem> {
     public int getNumberOfNodes() {
         int nodes = 0;
         if (this.getItem() != null) {
-            //test
-            System.out.println("dodano wezel kurde" + this.getItem().printItem());
-            //test
             nodes++;
         } else return nodes;
         nodes += countSubnodes((GraphTree) this.getLeft()) + countSubnodes((GraphTree) this.getRight());
@@ -104,10 +101,6 @@ public class GraphTree extends Tree<GraphItem> {
         if( node == null || node.getItem() == null ) {
             return 0;
         }
-            //test
-            System.out.println("dodano wezel " + node.getItem().printItem());
-            //test
             return 1 + countSubnodes((GraphTree) node.getLeft()) + countSubnodes((GraphTree) node.getRight());
-        
     }
 }
