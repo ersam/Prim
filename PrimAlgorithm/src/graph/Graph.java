@@ -29,32 +29,32 @@ public class Graph {
     public Graph(String file) throws FileNotFoundException, SuchElementAlreadyExistException, NotEmptyFileException, NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException, OutOfSizeException {
         readFile(file);
     }
-    
+
     private void checkCorrectnessOfParameters(int numberOfNodes) throws BadGraphParametersException {
-        if( numberOfNodes <= 0) {
+        if (numberOfNodes <= 0) {
             throw new BadGraphParametersException("Bad parameters in graph " + this.getClass());
         }
     }
-    
+
     private void initializeGraph(int numberOfNodes) throws NegativeNodeValueException, TheSameNodeValueException {
         this.graph = new GraphTree[numberOfNodes];
-        for(int i = 0; i < numberOfNodes; i++) {
+        for (int i = 0; i < numberOfNodes; i++) {
             graph[i] = new GraphTree(null);
         }
     }
-    
+
     private void readFile(String file) throws FileNotFoundException, SuchElementAlreadyExistException, NotEmptyFileException, NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException, OutOfSizeException {
         Scanner scanner = new Scanner(new File(file));
-        
+
         numberOfNodes = scanner.nextInt();
         initializeGraph(numberOfNodes);
         int edges = scanner.nextInt();
-        
-        for(int i = 0; i < edges; i++) {
+
+        for (int i = 0; i < edges; i++) {
             addToGraph(new GraphItem(scanner.nextInt(), scanner.nextInt(), scanner.nextInt()));
         }
-        
-        if( scanner.hasNext() ) {
+
+        if (scanner.hasNext()) {
             throw new NotEmptyFileException("File contains too much data");
         }
     }
@@ -89,11 +89,11 @@ public class Graph {
     }
 
     private void insertIntoGraph(GraphItem item) throws SuchElementAlreadyExistException {
-        graph[item.getFrom()].insert(item);
-        int tmp = item.getFrom();
-        item.setFrom(item.getTo());
-        item.setTo(tmp);
-        graph[item.getFrom()].insert(item);
+        if (item.getFrom() > item.getTo()) {
+            graph[item.getFrom()].insert(item);
+        } else {
+            graph[item.getTo()].insert(item);
+        }
         numberOfEdges++;
     }
 
@@ -107,5 +107,4 @@ public class Graph {
         return stringGraph;
     }
 
-    
 }

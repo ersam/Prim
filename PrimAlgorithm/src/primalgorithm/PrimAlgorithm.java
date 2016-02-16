@@ -23,11 +23,14 @@ public class PrimAlgorithm {
         this.graph = graph;
     }
     
-    
-    
     public Graph findMinimumSpanningTree(Graph graph) throws NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException {
         Graph MST = new Graph(graph.getNumberOfNodes());
         
+        for(int i = 0; i < graph.getNumberOfNodes(); i++) {
+            for(int j = 0; j < i; j++) {
+                
+            }
+        }
         
         return MST;
     }
