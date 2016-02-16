@@ -28,8 +28,7 @@ public class PrimAlgorithmTest {
     public void testFindFirstNode() {
         Graph graph;
         try {
-            graph = new Graph();
-            graph.readFile("C:\\Users\\Eryk\\Desktop\\graph1.txt");
+            graph = new Graph("C:\\Users\\Eryk\\Desktop\\graph1.txt");
         } catch (FileNotFoundException | SuchElementAlreadyExistException | NotEmptyFileException | NegativeNodeValueException | TheSameNodeValueException | BadGraphParametersException | OutOfSizeException ex) {
             System.err.println(ex.getMessage());
             return;

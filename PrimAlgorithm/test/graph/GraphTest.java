@@ -6,6 +6,8 @@
 package graph;
 
 import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.Test;
 
 /**
@@ -30,10 +32,10 @@ public class GraphTest {
         graphItemTab[4] = new GraphItem(3, 5, 7);
         graphItemTab[5] = new GraphItem(5, 1, 4);
         graphItemTab[6] = new GraphItem(4, 3, 5);
-        
+
     }
 
-    @Test
+    //@Test
     public void testAddToGraph() {
         System.out.println("addToGraph test:\n");
         try {
@@ -45,7 +47,6 @@ public class GraphTest {
             System.err.println(ex.getMessage());
         }
 
-        
 //        for (int i = 0; i < NUMBER_OF_SAMPLE_ITEMS; i++) {
 //            System.out.print(graphItemTab[i].printItem());
 //        }
@@ -60,18 +61,25 @@ public class GraphTest {
         System.out.println(graph.print());
         System.out.println(graph.getNumberOfEdges());
     }
-    
+
     @Test
     public void readFileTest() {
         System.out.println("readFile() test:\n");
         try {
-            graph = new Graph();
-            graph.readFile("C:\\Users\\Eryk\\Desktop\\graph1.txt");
+            graph = new Graph("C:\\Users\\Eryk\\Desktop\\graph1.txt");
         } catch (FileNotFoundException | SuchElementAlreadyExistException | NotEmptyFileException | NegativeNodeValueException | TheSameNodeValueException | BadGraphParametersException | OutOfSizeException ex) {
             System.err.println(ex.getMessage());
             return;
         }
+        System.out.print("Graph from file:\n" + graph.print());
         
-        System.out.print(graph.print());
+        try {
+            Graph graph1 = new Graph(8);
+            graph1.addToGraph(new GraphItem(3, 2, 1));
+            System.out.println(graph1.print());
+        } catch (OutOfSizeException | SuchElementAlreadyExistException | NegativeNodeValueException | TheSameNodeValueException | BadGraphParametersException ex) {
+            System.err.println(ex.getMessage());
+        }
+        
     }
 }

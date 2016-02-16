@@ -26,9 +26,8 @@ public class Graph {
         initializeGraph(numberOfNodes);
     }
 
-    public Graph() {
-        this.numberOfNodes = 0;
-        this.numberOfEdges = 0;
+    public Graph(String file) throws FileNotFoundException, SuchElementAlreadyExistException, NotEmptyFileException, NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException, OutOfSizeException {
+        readFile(file);
     }
     
     private void checkCorrectnessOfParameters(int numberOfNodes) throws BadGraphParametersException {
@@ -44,7 +43,7 @@ public class Graph {
         }
     }
     
-    public void readFile(String file) throws FileNotFoundException, SuchElementAlreadyExistException, NotEmptyFileException, NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException, OutOfSizeException {
+    private void readFile(String file) throws FileNotFoundException, SuchElementAlreadyExistException, NotEmptyFileException, NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException, OutOfSizeException {
         Scanner scanner = new Scanner(new File(file));
         
         numberOfNodes = scanner.nextInt();

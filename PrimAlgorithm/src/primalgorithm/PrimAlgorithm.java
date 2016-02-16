@@ -5,8 +5,11 @@
  */
 package primalgorithm;
 
+import graph.BadGraphParametersException;
 import graph.Graph;
 import graph.GraphItem;
+import graph.NegativeNodeValueException;
+import graph.TheSameNodeValueException;
 
 /**
  *
@@ -22,8 +25,8 @@ public class PrimAlgorithm {
     
     
     
-    public Graph findMinimumSpanningTree(Graph graph) {
-        Graph MST = new Graph();
+    public Graph findMinimumSpanningTree(Graph graph) throws NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException {
+        Graph MST = new Graph(graph.getNumberOfNodes());
         
         
         return MST;
