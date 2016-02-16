@@ -7,9 +7,13 @@ package primalgorithm;
 
 import graph.BadGraphParametersException;
 import graph.Graph;
-import graph.GraphItem;
 import graph.NegativeNodeValueException;
+import graph.NotEmptyFileException;
+import graph.OutOfSizeException;
+import graph.SuchElementAlreadyExistException;
 import graph.TheSameNodeValueException;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,36 +26,32 @@ public class PrimAlgorithm {
     public PrimAlgorithm(Graph graph) {
         this.graph = graph;
     }
-    
-    public Graph findMinimumSpanningTree(Graph graph) throws NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException {
+
+    public Graph findMinimumSpanningTree(Graph graph) throws NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException, OutOfSizeException, SuchElementAlreadyExistException {
         Graph MST = new Graph(graph.getNumberOfNodes());
         
-        for(int i = 0; i < graph.getNumberOfNodes(); i++) {
-            for(int j = 0; j < i; j++) {
-                
-            }
-        }
-        
+
         return MST;
-    }
-    
-    public GraphItem findFirstNode(Graph graph) {
-        if( graph == null) {
-            return null;
-        }
-        GraphItem item = null;
-        for( int i = 0; i < graph.getNumberOfNodes(); i++ ) {
-            for( int j = 0; j < graph.getNumberOfNodes(); j++ ) {
-                if( i != j && (item = graph.getItem(i, j)) != null) {
-                    return item;
-                }
-            }
-        }
-        
-        return item;
     }
 
     public static void main(String[] args) {
+        Graph g = null;
+        try {
+            g = new Graph("C:\\Users\\Eryk\\Desktop\\graph1.txt");
+        } catch (FileNotFoundException | SuchElementAlreadyExistException | NotEmptyFileException | NegativeNodeValueException | TheSameNodeValueException | BadGraphParametersException | OutOfSizeException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        PrimAlgorithm p = new PrimAlgorithm(g);
+        Graph g1 = null;
+        try {
+            g1 = p.findMinimumSpanningTree(g);
+        } catch (NegativeNodeValueException | TheSameNodeValueException | BadGraphParametersException | OutOfSizeException | SuchElementAlreadyExistException ex) {
+            System.err.println(ex.getMessage());
+        }
+        if (g1 != null) {
+            System.out.println(g1.print());
+        }
 
     }
 

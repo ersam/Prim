@@ -77,6 +77,10 @@ public class Graph {
 
         return item;
     }
+    
+    public GraphTree getAllEdges(int node) {
+        return graph[node];
+    }
 
     public void addToGraph(GraphItem item) throws OutOfSizeException, SuchElementAlreadyExistException {
         if (item == null) {

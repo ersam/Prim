@@ -35,7 +35,6 @@ public class PrimAlgorithmTest {
         }
         System.out.println(graph.print());
         PrimAlgorithm prim = new PrimAlgorithm(graph);
-        System.out.println(prim.findFirstNode(graph).printItem());
     }
 
     @Test
