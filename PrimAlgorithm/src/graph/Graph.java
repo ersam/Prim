@@ -19,11 +19,18 @@ public class Graph {
     private int numberOfNodes;
     private int numberOfEdges;
 
-    public Graph(int numberOfNodes) throws NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException {
+    public Graph(int numberOfNodes) throws BadGraphParametersException {
         checkCorrectnessOfParameters(numberOfNodes);
         this.numberOfNodes = numberOfNodes;
         this.numberOfEdges = 0;
         initializeGraph(numberOfNodes);
+    }
+    
+    private void initializeGraph(int numberOfNodes) {
+        this.graph = new GraphTree[numberOfNodes];
+        for (int i = 0; i < numberOfNodes; i++) {
+            graph[i] = new GraphTree(null);
+        }
     }
 
     public Graph(String file) throws FileNotFoundException, SuchElementAlreadyExistException, NotEmptyFileException, NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException, OutOfSizeException {
@@ -32,16 +39,11 @@ public class Graph {
 
     private void checkCorrectnessOfParameters(int numberOfNodes) throws BadGraphParametersException {
         if (numberOfNodes <= 0) {
-            throw new BadGraphParametersException("Bad parameters in graph " + this.getClass());
+            throw new BadGraphParametersException("Bad parameters in graph!");
         }
     }
 
-    private void initializeGraph(int numberOfNodes) throws NegativeNodeValueException, TheSameNodeValueException {
-        this.graph = new GraphTree[numberOfNodes];
-        for (int i = 0; i < numberOfNodes; i++) {
-            graph[i] = new GraphTree(null);
-        }
-    }
+    
 
     private void readFile(String file) throws FileNotFoundException, SuchElementAlreadyExistException, NotEmptyFileException, NegativeNodeValueException, TheSameNodeValueException, BadGraphParametersException, OutOfSizeException {
         Scanner scanner = new Scanner(new File(file));
@@ -68,14 +70,11 @@ public class Graph {
     }
 
     public GraphItem getItem(int from, int to) {
-        GraphItem item = null;
         try {
-            item = graph[from].get(to);
+            return graph[from].get(to);
         } catch (NoSuchElementInGraphException ex) {
-            System.out.println(ex.getMessage());
+            return null;
         }
-
-        return item;
     }
     
     public GraphTree getAllEdges(int node) {
